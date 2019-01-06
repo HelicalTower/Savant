@@ -1,0 +1,194 @@
+#:kivy 1.10.1
+
+#########################################################################################
+#Title: savant.kv
+#Author: Douglas T.
+#Creation Date: 02/01/2019
+#Description: kv language file for the kivy gui. Uses a tabbed panel with two tabs.
+#             The first is for user input of desired information, the second is to show
+#             the data that is written out by brain.py to 'search_results.xlsx'.
+#
+#Changelog:
+#Name:          Date:       Change:
+# Douglas T.    02/01/2019  Initial version 
+#########################################################################################
+
+<FrontEnd>
+    s_search: search
+    do_default_tab: False
+
+    newegg: newegg_box
+    others: others_box
+    other1: others_box1
+    other2: others_box2
+    other3: others_box3
+    other4: others_box4
+    other5: others_box5
+    other6: others_box6
+
+    TabbedPanelItem:
+        text: 'Search'
+
+        FloatLayout:
+            size: (root.width, root.height)
+
+            BoxLayout:
+                size_hint: (1, 0.166)
+                pos_hint: {'x':0, 'y':0.80}
+
+                Label:
+                    size_hint: (0.25, 1)
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_search
+                    text: 'Search: '
+
+                TextInput:
+                    size_hint: (1, 0.5)
+                    pos_hint: {'center_y':0.50}
+                    font_size: 30
+                    multiline: False
+                    id: search
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                pos_hint: {'x':0.15, 'y':0.65}
+                orientation: 'horizontal'         
+
+                CheckBox:
+                    id: newegg_box
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_newegg
+                    text: 'Newegg'
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                pos_hint: {'x':0.50, 'y':0.65}
+                orientation: 'horizontal'
+
+                CheckBox:
+                    id: others_box
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_others
+                    text: 'Others'
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                #pos: (100, 300)
+                pos_hint: {'x':0.15, 'y':0.55}
+                orientation: 'horizontal'
+
+                CheckBox:
+                    id: others_box1 
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: lable_others1
+                    text: 'Others1'
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                pos_hint: {'x':0.50, 'y':0.55}
+                orientation: 'horizontal'
+
+                CheckBox:
+                    id: others_box2
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_others2
+                    text: 'Others2'
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                pos_hint: {'x':0.15, 'y':0.45}
+                orientation: 'horizontal'
+
+                CheckBox:
+                    id: others_box3
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_others3
+                    text: 'Others3'
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                pos_hint: {'x':0.50, 'y':0.45}
+                orientation: 'horizontal'
+
+                CheckBox:
+                    id: others_box4
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_others4
+                    text: 'Others4'
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                pos_hint: {'x':0.15, 'y':0.35}
+                orientation: 'horizontal'
+
+                CheckBox:
+                    id: others_box5
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_others5
+                    text: 'Others5'
+
+            BoxLayout:
+                size_hint: (0.25, 0.166)
+                pos_hint: {'x':0.50, 'y':0.35}
+                orientation: 'horizontal'
+
+                CheckBox:
+                    id: others_box6
+                Label:
+                    font_size: 30
+                    size: self.texture_size
+                    id: label_others6
+                    text: 'Others6'
+
+            Button:
+                size_hint: (1, 0.167)
+                font_size: 30
+                text: 'Go!'
+                id: run
+                on_press: root.search_go(search.text)
+
+    TabbedPanelItem:
+        text: 'Results'
+
+        FloatLayout:
+            size: (root.width, root.height)
+
+            BoxLayout:
+                size_hint: (3, 0.833)
+                pos_hint: {'x': 0, 'y': 0.175}
+
+                ScrollView:
+                    do_scroll_x: True
+                    do_scroll_y: True
+                    bar_width: 5
+                    id: text_scroll
+
+                    TextInput:
+                        size_hint: (3, None)
+                        height: max(self.minimum_height, text_scroll.height)
+                        multiline: True
+                        readonly: True
+                        text: ""
+                        id: file_text
+
+            Button:
+                size_hint: (1, 0.167)
+                font_size: 30
+                text: 'Refresh'
+                id: refresh
+                on_press: root.text_refresh()

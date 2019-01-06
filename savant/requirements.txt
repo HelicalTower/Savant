@@ -1,0 +1,11 @@
+Savant Requirements:
+1. Python 3 +
+2. Kivy 1.10.1 +
+3. Requests
+4. BeautifulSoup
+5. An internet connection [The App does not check for a connection, it should check for a connection]
+
+    Temporary Requirements:
+    -Requirements that are temporary, and should be resolved as time goes by.
+    1. Linux
+    2. Mozilla Firefox
